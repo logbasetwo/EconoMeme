@@ -1,22 +1,35 @@
+import java.util.ArrayList;
 
 public class MemeStock {
 
 	private String meme;
-	private double worth;
-	private int shares;
+	private int[] values;
+	//private int shares;
 	
-	public MemeStock(String meme, double worth, int shares)
+	
+	
+	public MemeStock(String meme, int[] values)
 	{
 		this.meme = meme;
-		this.worth = worth;
-		this.shares = shares;
+		this.values = values;
+		//this.shares = shares;
 	}
 	
-	public double getValue()
+	public String getMeme()
 	{
-		return worth;
+		return meme;
 	}
 	
+	public int getValue(int date)
+	{
+		return values[date];
+	}
+	
+	public int[] getValues()
+	{
+		return values;
+	}
+	/**
 	public void setShares(int amount)
 	{
 		shares = amount;
@@ -27,5 +40,29 @@ public class MemeStock {
 		return shares;
 	}
 	
-
+	public int valueChangePerShare(int dateBought, int currentDate)
+	{
+		return values[currentDate] - values[dateBought];
+	}
+	
+	**/
+	public boolean equals(Object other)
+	{
+		return values.equals(((MemeStock) other).getValues()) && meme.equals(((MemeStock) other).getMeme());
+	}
+	
+	
+	
+	public String toString()
+	{
+		String numString = "{";
+		for(int num: values)
+		{
+			numString = numString.concat(num + " ");
+		}
+		numString = numString.concat("}");
+		return "\tmeme: " + meme + "\n\tprice: " + numString;
+	}
+	
+	
 }
