@@ -5,7 +5,7 @@ public class Profile3 {
 	private String username;
 	private String password;
 	public int cash = 200;
-	public ArrayList<int[]> memes = new ArrayList<int[]>();
+	public ArrayList<Integer[]> memes = new ArrayList<Integer[]>();
 	private static int date;
 	public ArrayList<Integer> amounts = new ArrayList<Integer>();
 	
@@ -20,7 +20,7 @@ public class Profile3 {
 		//this.amounts = amounts;
 	}
 	
-	public ArrayList<int[]> getMemeList()
+	public ArrayList<Integer[]> getMemeList()
 	{
 		return memes;
 	}
@@ -36,13 +36,17 @@ public class Profile3 {
 		date = today;
 	}
 	
-	private static boolean equalValues(int[] array1, int[] array2)
+	private static boolean equalValues(Integer[] array1, Integer[] array2)
 	{
 		for(int i = 0; i < array1.length; i++)
 		{
 			//System.out.println(array1[i]);
 			//System.out.println(array2[i]);
-			if(array1[i] != array2[i])
+			//Integer arr1 = array[i];
+			//Integer arr2 = array
+			int arr1 = array1[i].intValue();
+			int arr2 = array2[i].intValue();
+			if(arr1 != arr2)
 			{
 				return false;
 			}
@@ -55,7 +59,7 @@ public class Profile3 {
 	}
 	
 	
-	private int indexOfMeme(int[] other)
+	private int indexOfMeme(Integer[] other)
 	{
 		int index = -1;
 		for(int i = 0; i < memes.size(); i++)
@@ -74,7 +78,7 @@ public class Profile3 {
 		return index;
 	}
 	
-	public void buy(int[] meme, int amount)
+	public void buy(Integer[] meme, int amount)
 	{
 		if(indexOfMeme(meme) > -1)
 		{
@@ -98,7 +102,7 @@ public class Profile3 {
 		else
 		{
 			//cash += memes.get(index).getValue(date)*amount;
-			int[] meme = memes.get(index);
+			Integer[] meme = memes.get(index);
 			cash += meme[date]*amount;
 			if(amount < amounts.get(index))
 			{
@@ -128,7 +132,31 @@ public class Profile3 {
 	}
 	
 	
-	
+	private int getPrice(Integer[] meme, int date){
+        return meme[date];
+    }
+    
+    
+        public Boolean correctTransaction(Integer[] meme, int day, int userCash, int shares){
+            int price = getPrice(meme, day);
+            int totalCost = price * shares;
+            if(totalCost >= userCash){
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+
+        public int sellDifference(Integer[] meme, int startDate, int currentDate){
+            //could implement a percentage value or total difference in price
+            int ogPrice = getPrice(meme, startDate);
+            int currentPrice = getPrice(meme, currentDate);
+
+            int difference = currentPrice - ogPrice;
+            return difference;
+        }
+        
 	public String getLogin()
 	{
 		return username;
@@ -144,7 +172,7 @@ public class Profile3 {
 		int worth = cash;
 		for(int i = 0; i < memes.size(); i++)
 		{
-			int[] meme = memes.get(i);
+			Integer[] meme = memes.get(i);
 			worth += meme[date]*amounts.get(i);
 		}
 		
@@ -162,7 +190,7 @@ public class Profile3 {
 		return "Profile for: " + username + "\ncash: " + cash + "\ntotalValue 
 	}
 	*/
-	private static String toStr(int[] meme)
+	private static String toStr(Integer[] meme)
 	{
 		String numString = "{";
 		for(int num: meme)
@@ -192,10 +220,10 @@ public class Profile3 {
 	public static void main(String[] args)
 	{
 		
-		int[] meme1array = {10, 12, 18, 29, 22, 23, 9, 11};
-		int[] meme2array = {5, 9, 25, 39, 27, 15, 15, 7};
-		int[] meme3array = {30, 20, 18, 24, 10, 5, 8, 22};
-		int[] meme4array = {5, 9, 25, 39, 27, 15, 15, 7};
+		Integer[] meme1array = {10, 12, 18, 29, 22, 23, 9, 11};
+		Integer[] meme2array = {5, 9, 25, 39, 27, 15, 15, 7};
+		Integer[] meme3array = {30, 20, 18, 24, 10, 5, 8, 22};
+		Integer[] meme4array = {5, 9, 25, 39, 27, 15, 15, 7};
 		//MemeStock meme1 = new MemeStock("$SP", meme1array);
 		//MemeStock meme2 = new MemeStock("$DRK", meme2array);
 		//MemeStock meme3 = new MemeStock("$TOM", meme3array);
@@ -206,8 +234,9 @@ public class Profile3 {
 		//ArrayList<Integer> amounts = new ArrayList<Integer>();
 		//amounts.add(4);
 		//amounts.add(1);
-		Profile2 p = new Profile2("dyeh", "dyeh");
-		Profile2.setDate(5);
+		Profile3 p = new Profile3("dyeh", "dyeh");
+		Profile3.setDate(5);
+		//p.buy(meme1array, 4);
 		p.buy(meme1array, 4);
 		p.printInfo();
 		p.buy(meme2array, 1);
