@@ -28,57 +28,22 @@ public class MemeLibrary {
         int counter = 0;
         int counter2 = 0;
         String lineTaker = "";
-        //System.out.println(d);
-
+        
         try {
             Scanner reader = new Scanner(file);
             for(int x = 0; x < d; x ++)
             {
                 lineClearer = reader.nextLine();
-                //System.out.println(lineClearer);
             }
             
             lineTaker = reader.nextLine();
-            //System.out.println(lineTaker);
             String[] lineSplit = lineTaker.split(",", 0);
-            //System.out.println(lineSplit[0]);
-            //System.out.println(lineSplit[0]);
-            //csv = Integer.parseInt(lineSplit[n]);
             String number = lineSplit[n];
             Integer result = Integer.valueOf(number);		
-            //System.out.println(result);
-            csv = result;
-            //System.out.println(lineSplit[n]);
-            //System.out.println(csv);
-            
-            
-            
-            /*for(int x = 0; x < lineTaker.length(); x++)
-            {
-                if(lineTaker.charAt(x) > 48 || lineTaker.charAt(x) < 57)
-                {
-                    line[x] = true;
-                    counter++;
-                }
-                else
-                    line[x] = false;
-            }
-            for(int x = 0; x < 8; x++)
-            {
-                if(line[x])
-                    counter2++;
-            }
-            csv = 
-            
-            
-            /*for(int x = 0; x < n; x++)
-                numClearer = reader.nextInt();
-            csv = reader.nextInt();*/            
+            csv = result;      
         } catch (FileNotFoundException ex) {
             Logger.getLogger(MemeLibrary.class.getName()).log(Level.SEVERE, null, ex);
         }
-        //System.out.println(csv);
-        //System.out.println("a;lksdhfas;dlkf");
         return csv;
     }
     
@@ -89,15 +54,13 @@ public class MemeLibrary {
         int date = y + 3;
         int value = -1;
         value = csvReader(date, memeNum);
-        //System.out.println(csv1);
-        //System.out.println(value);
         return value;
     }
     
     public static Integer dataRetrieval (String w, int y)
     {
         //given meme name and date retrieves value of meme on date
-        //System.out.println("a;lskdfj;lkajsd;lfk");
+
         if (w.equals("$SP"))
             return readFile(0, y);
         else if (w.equals("$DRK"))
@@ -127,6 +90,13 @@ public class MemeLibrary {
         return w;
     }
     
+    /*
+    public static void createProf(){
+        
+        
+        
+    } */
+    
     public static void main(String[] args) throws FileNotFoundException {
         Integer[] surprisedPikachu = new Integer[29];
         surprisedPikachu = updateMeme(surprisedPikachu, "$SP");
@@ -148,8 +118,79 @@ public class MemeLibrary {
         kermitMeme = updateMeme(kermitMeme, "$KMT");
         System.out.println("Kermit");
         
-        //for (int x = 0; x < 30; x++)
-            //System.out.println(surprisedPikachu[x]);
+        
+        //createProf();
+        
+        //ask for user input for this info:
+        
+        
+        Scanner reader = new Scanner(System.in);  // Reading from System.in
+        System.out.println("Enter a username: ");
+        String username = reader.nextLine(); // Scans the next token of the input as an int.
+        System.out.println("Enter a password: ");
+        String password = reader.nextLine();
+        //once finished
+        String clear;
+        if(reader.hasNext())
+            clear = reader.nextLine();
+        reader.close();
+        
+        //String username = "TJ";
+        //String password = "42069nice";
+        
+        
+        Profile profile1 = new Profile(username, password);
+        
+        Scanner scnr = new Scanner(System.in);
+        String tickerSym = "";
+        int dayNum = -1;
+        System.out.println("Enter Meme ticker symbol (ie $SP): ");
+        tickerSym = scnr.next();
+        System.out.println("Enter day (0-29): ");
+        dayNum = scnr.nextInt();
+        System.out.println(tickerSym + " is worth " + dataRetrieval(tickerSym, dayNum) + " USD on day " + dayNum);
+        
+        /*
+        THIS WOULD STILL BE SAME 2 VARS, with different user input
+        */
+        String username2 = "Horn";
+        String password2 = "xc4life";
+        
+        Profile profile2 = new Profile(username2, password2);
+        
+        /*
+        BUYING MEMES
+        ask for user input for following info:
+        */
+        
+        
+        Integer[] meme = tomMeme;
+        int day = 5;
+        int amountBuy = 1;
+        
+        
+        if(profile1.correctTransaction(meme, day, cash, totalShares))
+        {         
+        profile1.buy(meme, amountBuy);
+        profile2.buy(meme, 4); 
+        }
+        
+        /*
+        SELLING MEMES
+        ask for user input for following info:
+        */
+        
+        Integer[] wantToSell = tomMeme;
+        //somehow turn this into index variable
+        int toSellIndex = 5;
+        int amountSell = 1;
+        
+        profile1.sell(toSellIndex, amountSell);
+        //profile1.sell(wantToSell, amountSell);
+        
+        
+        
+        
     }
     
 }
