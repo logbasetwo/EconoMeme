@@ -31,8 +31,8 @@ public class Profile {
 		int index = -1;
 		for(int i = 0; i < memes.size(); i++)
 		{
-			boolean jawn = other.equals(memes.get(i));
-			if(jawn == true)
+			
+			if(other.equals(memes.get(i)))
 			{
 				index = i;
 				break;
@@ -123,7 +123,7 @@ public class Profile {
 		}	
 		return "Profile for: " + username + "\ncash: " + cash + "\ntotalValue
 	}
-	*/
+	
 	public void printInfo()
 	{
 		System.out.println("cash: " + cash);
@@ -162,7 +162,10 @@ public class Profile {
 		p.printInfo();
 		p.buy(meme4, 2);
 		p.printInfo();
+		p.sell(0, 2);
+		p.printInfo();
 	}
+	*/
 			
 		
 }

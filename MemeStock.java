@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+
 
 public class MemeStock {
 
@@ -48,7 +48,8 @@ public class MemeStock {
 	**/
 	public boolean equals(Object other)
 	{
-		return values.equals(((MemeStock) other).getValues()) && meme.equals(((MemeStock) other).getMeme());
+		return meme.equals(((MemeStock) other).getMeme());
+				//values.equals(((MemeStock) other).getValues()) && meme.equals(((MemeStock) other).getMeme());
 	}
 	
 	
