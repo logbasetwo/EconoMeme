@@ -15,26 +15,40 @@ import java.util.Scanner;
  */
 public class MemeLibrary {
 
-    public static void readFile() throws FileNotFoundException
+    public static Integer readFile(int w, int y) throws FileNotFoundException
     {
         String fileName = "memeLibrary.csv";
         File file = new File(fileName);
         Scanner reader = new Scanner(file);
-        while (reader.hasNext()) {
-            System.out.println(reader.hasNext());
+        int memeNum = w + 3;
+        int date = y + 3;
+        String lineClearer = "";
+        int value = -1;
+        for(int x = 0; x < date; x++)
+        {
+            lineClearer = reader.nextLine();
         }
+        for(int z = 0; z < memeNum; z++)
+        {
+            value = reader.nextInt();
+        }
+        value = reader.nextInt();
+        return value;
     }
     
-    public static void dataRetrieval (String w, int y)
+    public static Integer dataRetrieval (String w, int y)
     {
         //given meme name and date retrieves value of meme on date
+        if (w.equals("$SP"))
+            
+        else if
     }
     
     public static Integer[] updateMeme(Integer[] w, String y)
     {
         for(int x = 0; x < 30; x++)
         {
-            //w[0] = dataRetreival(y, today - x));
+            w[x] = dataRetrieval(y, x);
         }
         return w;
     }
